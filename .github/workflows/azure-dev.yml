@@ -27,6 +27,10 @@ jobs:
       AZURE_CHAT_MODEL_VERSION: ${{ vars.AZURE_CHAT_MODEL_VERSION }}
       AZURE_EMBEDDING_MODEL: ${{ vars.AZURE_EMBEDDING_MODEL }}
 
+      # project specific
+      AZURE_CONTAINER_APP_URL: ${{ vars.AZURE_CONTAINER_APP_URL }}
+      AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
