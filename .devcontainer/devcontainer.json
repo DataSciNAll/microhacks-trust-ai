@@ -1,96 +1,38 @@
 {
-    "name": "Microhack Trustworthy AI",
-    "image": "mcr.microsoft.com/devcontainers/python:1-3.13-bookworm",
-    
-    // Codespaces machine type: 4-core = 8GB RAM
-    "hostRequirements": {
-        "cpus": 4,
-        "memory": "8gb"
+    "name": "Trusthworthy AI Demo Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
     },
-
-    // Install additional tools via features
     "features": {
-        // Azure CLI
-        "ghcr.io/devcontainers/features/azure-cli:1": {
-            "installBicep": true
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22",
+            "nodeGypDependencies": false
         },
-        // Azure Developer CLI (azd)
+        "ghcr.io/devcontainers/features/azure-cli:1.2.5": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/azure/azure-dev/azd:latest": {},
-        // PowerShell 7+
-        "ghcr.io/devcontainers/features/powershell:1": {
-            "version": "latest"
-        },
-        // Docker-in-Docker for container testing
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {
-            "version": "latest",
-            "moby": true
-        },
-        // GitHub CLI
-        "ghcr.io/devcontainers/features/github-cli:1": {}
+		"ghcr.io/devcontainers/features/powershell:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
     },
-
-    // VS Code customizations
     "customizations": {
         "vscode": {
             "extensions": [
-                // Python development
-                "ms-python.python",
-                "ms-python.vscode-pylance",
-                "ms-python.debugpy",
-                
-                // Jupyter notebooks
-                "ms-toolsai.jupyter",
-                "ms-toolsai.jupyter-keymap",
-                "ms-toolsai.jupyter-renderers",
-                
-                // Azure tools
-                "ms-azuretools.vscode-azurefunctions",
-                "ms-azuretools.vscode-docker",
+                "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
-                "ms-vscode.azure-account",
-                
-                // AI Toolkit
-                "ms-windows-ai-studio.windows-ai-studio",
-                
-                // General development
-                "GitHub.copilot",
-                "GitHub.copilot-chat",
-                "redhat.vscode-yaml",
-                "ms-vscode.powershell",
-                "eamodio.gitlens"
-            ],
-            "settings": {
-                "python.defaultInterpreterPath": "${workspaceFolder}/.evalenv/bin/python",
-                "python.terminal.activateEnvironment": true,
-                "python.analysis.typeCheckingMode": "basic",
-                "editor.formatOnSave": true,
-                "editor.rulers": [120],
-                "files.trimTrailingWhitespace": true,
-                "terminal.integrated.defaultProfile.linux": "pwsh"
-            }
+                "ms-python.python",
+                "astral-sh.ty",
+                "esbenp.prettier-vscode",
+                "DavidAnson.vscode-markdownlint",
+				"ms-windows-ai-studio.ms-windows-ai-studio"
+            ]
         }
     },
-
-    // Run after container is created
-    "postCreateCommand": "bash .devcontainer/post-create.sh",
-
-    // Run when container starts
-    "postStartCommand": "echo '✅ Devcontainer ready! Run: source .evalenv/bin/activate'",
-
-    // Environment variables
-    "containerEnv": {
-        "PYTHONDONTWRITEBYTECODE": "1",
-        "PYTHONUNBUFFERED": "1"
-    },
-
-    // Forward ports for local development
-    "forwardPorts": [8080, 8000, 8501],
-    "portsAttributes": {
-        "8080": { "label": "nginx (Container App)", "onAutoForward": "notify" },
-        "8000": { "label": "FastAPI", "onAutoForward": "notify" },
-        "8501": { "label": "Streamlit", "onAutoForward": "notify" }
-    },
-
-    // Run as non-root user
-    "remoteUser": "vscode"
+    "forwardPorts": [
+        50505
+    ],
+    "postCreateCommand": "./devcontainer/post-create.sh",
+    "remoteUser": "vscode",
+    "hostRequirements": {
+        "memory": "8gb"
+    }
 }

@@ -21,9 +21,6 @@ uv pip install -r ./app/requirements.txt
 # Deactivate virtual environment
 deactivate  
 
-# Activate virtual environment
-source .venv/bin/activate
-
 # Create Python virtual environment
 echo "📦 Creating Python virtual environment (.evalenv)..."
 python -m venv .evalenv
@@ -34,10 +31,6 @@ source .evalenv/bin/activate
 # Install scripts requirements (AI evaluation tools)
 echo "📚 Installing scripts requirements..."
 uv pip install -r ./scripts/requirements.txt
-
-# Install PowerShell Az module (optional - can take a while)
-echo "💻 Installing PowerShell Az module..."
-pwsh -Command "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted; Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber" || echo "⚠️ Az module installation skipped (can be installed manually if needed)"
 
 echo ""
 echo "✅ =============================================="
