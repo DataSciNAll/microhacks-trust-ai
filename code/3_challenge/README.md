@@ -75,7 +75,7 @@ Go to Actions, click on ```Github Actions Evaluation Workflow``` and see the ini
 
 🧩 Step 3 — Capture Service Principal details
 
-Get the App name from and pipeline config output you executed above - it shows something like this “Creating service principal az-dev-XXXXXXXXXXX (30XXXXXXXXXXXXXXXX)”
+Get the App name from pipeline config output you executed above - it shows something like this “Creating service principal az-dev-XXXXXXXXXXX (30XXXXXXXXXXXXXXXX)”
 
 Go to Microsoft Entra ID —> Enterprise Applications —> Search using your app name —> Get the object ID
 
