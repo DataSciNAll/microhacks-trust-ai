@@ -14,32 +14,32 @@ A simple chat interface that uses Azure OpenAI with managed identity authenticat
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                  Azure Container Apps                        │
+│                  Azure Container Apps                       │
 │  ┌─────────────────────────────────────────────────────┐    │
-│  │                   nginx (port 8080)                  │    │
+│  │                   nginx (port 8080)                 │    │
 │  │         ┌──────────────┬──────────────┐             │    │
 │  │         │   /          │   /api/*     │             │    │
 │  │         │   /chat      │   /chat      │             │    │
 │  │         ▼              ▼              │             │    │
-│  │  ┌──────────┐    ┌──────────┐        │             │    │
-│  │  │Streamlit │    │ FastAPI  │        │             │    │
-│  │  │ (8501)   │    │ (8000)   │        │             │    │
-│  │  └────┬─────┘    └────┬─────┘        │             │    │
-│  │       └───────┬───────┘              │             │    │
-│  │               ▼                      │             │    │
-│  │       Azure OpenAI Client            │             │    │
-│  │                                      │             │    │
-│  │       User Assigned Managed Identity │             │    │
-│  └──────────────────────────────────────┘             │    │
+│  │  ┌──────────┐    ┌──────────┐         │             │    │
+│  │  │Streamlit │    │ FastAPI  │         │             │    │
+│  │  │ (8501)   │    │ (8000)   │         │             │    │
+│  │  └────┬─────┘    └────┬─────┘         │             │    │
+│  │       └───────┬───────┘               │             │    │
+│  │               ▼                       │             │    │
+│  │       Azure OpenAI Client             │             │    │
+│  │                                       │             │    │
+│  │       User Assigned Managed Identity  │             │    │
+│  └───────────────────────────────────────┘             │    │
 └─────────────────────────────────────────────────────────────┘
                                │
                                ▼
                 ┌──────────────────────────┐
                 │    Azure OpenAI          │
-                │    (Cognitive Services)   │
+                │    (Cognitive Services)  │
                 │                          │
                 │  • gpt-4o-mini           │
-                │  • Managed Identity Auth  │
+                │  • Managed Identity Auth │
                 └──────────────────────────┘
 ```
 
