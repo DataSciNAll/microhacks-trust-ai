@@ -2,7 +2,7 @@
 
 ## Overview
 
-Contoso Electronics is piloting an internal HR Q&A application where employees can ask about benefits and policies. The chat agent retrieves answers from policy documents with citations. Chat applications are typically graded on functionality and not impact on end-users. We want to help developers and sponsors gain trust in their applications in the early stages of the development cycle while gaining confidence in its feasibility. In this challenge, we will work in the Planning phase to prototype our application through model selection, context engineering, and manual evaluation. The purpose of the planning phase is to green light our concept into a working application and understand its strengths and limitations to better design it for the Build Phase.
+Contoso Electronics is piloting an internal HR Q&A application where employees can ask about benefits and policies. The chat agent retrieves answers from policy documents with citations. Chat applications are typically graded on functionality and not on the impact on end-users. We want to help developers and sponsors gain trust in their applications in the early stages of the development cycle while gaining confidence in its feasibility. In this challenge, we will work in the Planning phase to prototype our application through model selection, context engineering, and manual evaluation. The purpose of the planning phase is to green light our concept into a working application and understand its strengths and limitations to better design it for the Build Phase.
 <br>
 
 ## Tools & Config Needed

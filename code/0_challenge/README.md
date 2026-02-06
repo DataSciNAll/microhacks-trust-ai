@@ -164,7 +164,7 @@ A pre-requisite before running AZD UP is to activate your Python Virtual environ
 
     This will provision Azure resources and deploy this sample to those resources, including building the search index based on the files found in the `./data` folder.  
 
-1. Open URL for RAGCHAT application printed in the terminal console similar to the below picture. Ask it a few questions to ensure it return results.<br>
+1. Open URL for RAGCHAT application printed in the terminal console similar to the below picture. <br>
 
 ![Alt text](/media/ragchatterminal.png "RAGCHAT Terminal")
 
