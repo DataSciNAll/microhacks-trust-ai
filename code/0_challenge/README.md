@@ -94,11 +94,15 @@ For Codespaces, go into your web browser and login to GitHub.
     ```
 1. Activate the Python Virtual Environment
 
-    Mac OS X or Linux ```source .evalenv/bin/activate```
+    **Mac OS X or Linux** 
+    ```
+    source .evalenv/bin/activate
+    ```
 
-    Windows CMD ```.evalenv\Scripts\activate.bat```
-
-    Powershell ```.evalenv\Scripts\Activate.ps1```
+    **Powershell** 
+    ```
+    .evalenv\Scripts\Activate.ps1
+    ```
 
 1. Install UV to expediate the pip installation
 
@@ -112,14 +116,27 @@ For Codespaces, go into your web browser and login to GitHub.
     uv pip install -r ./scripts/requirements.txt
     ```
 
-1. Change permissions of shell script to deploy Container image
+1. Prep for postprovision hook
+    
+    **Mac OS X or Linux**
+
+    Change permissions of shell script to deploy Container image
     ```bash
     chmod +x ./scripts/02_deploy_container_apps.sh
     ```
+    **Windows**
+
+    Use pwsh version for postprovision
+    ```
+    Rename-Item -Path "azure.yaml" -NewName "azure_bash.yaml"; Rename-Item -Path "azure_pwsh.yaml" -NewName "azure.yaml"
+    ```
+
 </details>
 <br>
 
 ## Deploy the Azure Resources
+
+From the .evalenv Environment activated in Setup
 
 1. Login to your Azure Developer Account in the terminal window
 

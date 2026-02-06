@@ -17,14 +17,13 @@ $ROOT_DIR = Split-Path -Parent $SCRIPT_DIR
 $WEBAPP_DIR = Join-Path $ROOT_DIR "app"
 
 # Colors for output
-$RED = "`e[31m"
-$GREEN = "`e[32m"
-$YELLOW = "`e[33m"
-$NC = "`e[0m"  # No Color
+$RED = [System.ConsoleColor]::Red
+$GREEN = [System.ConsoleColor]::Green
+$YELLOW = [System.ConsoleColor]::Yellow
 
-Write-Host "${GREEN}============================================${NC}"
-Write-Host "${GREEN}Deploying to Azure Container Apps${NC}"
-Write-Host "${GREEN}============================================${NC}"
+Write-Host "============================================" -ForegroundColor $GREEN
+Write-Host "Deploying to Azure Container Apps" -ForegroundColor $GREEN
+Write-Host "============================================" -ForegroundColor $GREEN
 
 # Load environment variables from azd
 $AZURE_DIR = Join-Path $ROOT_DIR ".azure"
@@ -37,7 +36,7 @@ if (Test-Path $CONFIG_JSON) {
         $ENV_FILE = Join-Path $AZURE_DIR $ENV_NAME ".env"
         
         if (Test-Path $ENV_FILE) {
-            Write-Host "${YELLOW}Loading environment from: $ENV_FILE${NC}"
+            Write-Host "Loading environment from: $ENV_FILE" -ForegroundColor $YELLOW
             Get-Content $ENV_FILE | ForEach-Object {
                 if ($_ -match '^\s*$' -or $_ -match '^\s*#') {
                     return
@@ -52,7 +51,7 @@ if (Test-Path $CONFIG_JSON) {
         }
     }
     catch {
-        Write-Host "${YELLOW}Warning: Could not load environment from config.json${NC}"
+        Write-Host "Warning: Could not load environment from config.json" -ForegroundColor $YELLOW
     }
 }
 
@@ -67,17 +66,17 @@ $requiredVars = @(
 
 foreach ($var in $requiredVars) {
     if (-not (Test-Path env:$var) -or [string]::IsNullOrEmpty((Get-Item env:$var).Value)) {
-        Write-Host "${RED}Error: $var not set. Run 'azd up' first to provision infrastructure.${NC}"
+        Write-Host "Error: $var not set. Run 'azd up' first to provision infrastructure." -ForegroundColor $RED
         exit 1
     }
 }
 
 if (-not (Test-Path env:AZURE_APPINSIGHTS_CONNECTION_STRING) -or [string]::IsNullOrEmpty((Get-Item env:AZURE_APPINSIGHTS_CONNECTION_STRING).Value)) {
-    Write-Host "${YELLOW}Warning: AZURE_APPINSIGHTS_CONNECTION_STRING not set. Tracing will be disabled.${NC}"
+    Write-Host "Warning: AZURE_APPINSIGHTS_CONNECTION_STRING not set. Tracing will be disabled." -ForegroundColor $YELLOW
 }
 
 Write-Host ""
-Write-Host "${YELLOW}Configuration:${NC}"
+Write-Host "Configuration:" -ForegroundColor $YELLOW
 Write-Host "  Resource Group:     $env:AZURE_RESOURCE_GROUP"
 Write-Host "  Container Registry: $env:AZURE_CONTAINER_REGISTRY_NAME"
 Write-Host "  Container App:      $env:AZURE_CONTAINER_APP_NAME"
@@ -96,7 +95,7 @@ Set-Location $WEBAPP_DIR
 
 # Build image using ACR Build Tasks (no local Docker required)
 Write-Host ""
-Write-Host "${YELLOW}Building combined Streamlit + FastAPI image in Azure...${NC}"
+Write-Host "Building combined Streamlit + FastAPI image in Azure..." -ForegroundColor $YELLOW
 az acr build `
     --registry $env:AZURE_CONTAINER_REGISTRY_NAME `
     --image app:latest `
@@ -105,7 +104,7 @@ az acr build `
 
 # Update Container App with new image and environment variables
 Write-Host ""
-Write-Host "${YELLOW}Updating Container App with environment variables...${NC}"
+Write-Host "Updating Container App with environment variables..." -ForegroundColor $YELLOW
 
 $chatModel = if ($env:AZURE_CHAT_MODEL) { $env:AZURE_CHAT_MODEL } else { "gpt-4o-mini" }
 $searchIndex = if ($env:AZURE_SEARCH_INDEX_NAME) { $env:AZURE_SEARCH_INDEX_NAME } else { "documents" }
@@ -128,20 +127,20 @@ $APP_URL = az containerapp show `
     --query "properties.configuration.ingress.fqdn" -o tsv
 
 Write-Host ""
-Write-Host "${GREEN}============================================${NC}"
-Write-Host "${GREEN}Deployment Complete!${NC}"
-Write-Host "${GREEN}============================================${NC}"
+Write-Host "============================================" -ForegroundColor $GREEN
+Write-Host "Deployment Complete!" -ForegroundColor $GREEN
+Write-Host "============================================" -ForegroundColor $GREEN
 Write-Host ""
-Write-Host "${YELLOW}Your Application URL:${NC} https://$APP_URL"
+Write-Host "Your Application URL: https://$APP_URL" -ForegroundColor $YELLOW
 Write-Host ""
-Write-Host "${YELLOW}Available Endpoints:${NC}"
+Write-Host "Available Endpoints:" -ForegroundColor $YELLOW
 Write-Host "  Streamlit UI:   https://$APP_URL/"
 Write-Host "  FastAPI Chat:   https://$APP_URL/chat"
 Write-Host "  API Docs:       https://$APP_URL/docs"
 Write-Host "  Health Check:   https://$APP_URL/api/health"
 Write-Host ""
-Write-Host "${YELLOW}Note:${NC} It may take a few minutes for the app to start."
+Write-Host "Note: It may take a few minutes for the app to start." -ForegroundColor $YELLOW
 Write-Host ""
 Write-Host "View logs:"
 Write-Host "  az containerapp logs show -n $env:AZURE_CONTAINER_APP_NAME -g $env:AZURE_RESOURCE_GROUP --follow"
-Write-Host "${GREEN}============================================${NC}"
+Write-Host "============================================" -ForegroundColor $GREEN
