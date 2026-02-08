@@ -54,9 +54,13 @@ You can run this Microhack either on your local computer or in GitHub Codespaces
 
 ## Setup your Development Environment on Codespaces (recommended)
 
+You first need to fork this repo into your GitHub account. Use the below button to do that.
+
+[![Fork this repo](https://img.shields.io/badge/Fork%20this%20repo-blue?logo=github)](https://github.com/microsoft/microhacks-trust-ai/fork)
+
 Use the below button to open the Create Codespace page in a new tab. Use the default configuration.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/microhacks-trust-ai?fork=true)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/microhacks-trust-ai?quickstart=1)
 
 1. At the terminal window confirm the home directory ```/microhacks-trust-ai```
 
