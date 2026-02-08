@@ -1,4 +1,4 @@
-![Alt text](docs/Microhack%20OCTO%20logo.png "Microsoft Americas Office of the CTO")
+![Alt text](docs/Microhack%20OCTO%20logo.png "Microsoft Americas Office of the CTOs")
 
 # Microhack - Trustworthy AI
 
