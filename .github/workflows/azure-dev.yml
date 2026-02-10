@@ -72,7 +72,7 @@ jobs:
         env:
           AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
 
-     # - name: Export azd env vars to GitHub Actions environment
+     # - name: Export azd env vars to GitHub Actions environments
      #   shell: bash
      #   run: |
      #     set -e
